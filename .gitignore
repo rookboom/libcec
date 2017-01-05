@@ -91,7 +91,8 @@ src/libcec/libcec.pc
 
 src/CecSharpTester/bin
 src/CecSharpTester/obj
-
+src/LibCecService/bin
+src/LibCecService/obj
 src/cec-config-gui/obj
 src/cec-config/cec-config
 src/cec-config/*.o
