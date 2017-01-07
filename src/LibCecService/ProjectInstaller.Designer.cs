@@ -39,7 +39,7 @@
             // 
             // serviceInstaller2
             // 
-            this.serviceInstaller2.ServiceName = "MonitorPowerService";
+            this.serviceInstaller2.ServiceName = "LibCecService";
             this.serviceInstaller2.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller

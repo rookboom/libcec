@@ -153,6 +153,8 @@ namespace LibCecService
                             bool res;
                             if (ps == PowerState.On)
                             {
+                                // Sleep a while since sometimes power-on does not work if being send immediately after connecting.
+                                System.Threading.Thread.Sleep(500);
                                 res = p.PowerOn();
                                 Log("********** Power On: " + res.ToString());
                                 System.Threading.Thread.Sleep(5000);

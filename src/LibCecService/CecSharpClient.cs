@@ -43,6 +43,8 @@ namespace CecSharpClient
             config.DeviceTypes.Types[0] = CecDeviceType.RecordingDevice;
             config.DeviceName = "CEC Service";
             config.ClientVersion = LibCECConfiguration.CurrentVersion;
+            var ignoreCallback = new CecCallbackMethods();
+            config.SetCallbacks(ignoreCallback);
             Lib = new LibCecSharp(config);
             Lib.InitVideoStandalone();
         }
@@ -77,12 +79,12 @@ namespace CecSharpClient
 
         public bool PowerOn()
         {
-            return Lib.PowerOnDevices(CecLogicalAddress.Broadcast);
+            return Lib.PowerOnDevices(CecLogicalAddress.Tv);
         }
 
         public bool Standby()
         {
-            return Lib.StandbyDevices(CecLogicalAddress.Broadcast);
+            return Lib.StandbyDevices(CecLogicalAddress.Tv);
         }
 
         private LibCecSharp Lib;
