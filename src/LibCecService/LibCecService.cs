@@ -54,8 +54,6 @@ namespace LibCecService
             {
                 if (Environment.UserInteractive)
                 {
-                    Log("Running as console app!");
-
                     service.OnStart(args);
 
                     Console.WriteLine("press any key to quit");
@@ -65,8 +63,6 @@ namespace LibCecService
                 }
                 else
                 {
-                    Log("Service starting!");
-
                     ServiceBase.Run(service);
                 }
             }
@@ -179,15 +175,19 @@ namespace LibCecService
         /// Logs either to the console or a log file depending on if we are running as a service or as a console app
         /// </summary>
         /// <param name="message">The message to emit</param>
-        private static void Log(string message, bool includeTimestamp = true)
+        private void Log(string message, bool includeTimestamp = true)
         {
             if (includeTimestamp)
                 message = DateTime.Now.ToString() + "\t" + message;
 
             if (Environment.UserInteractive)
+            {
                 Console.WriteLine(message);
+            }
             else
-                File.AppendAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "LibCecService Log.txt"), message + Environment.NewLine);
+            {
+                this.EventLog.WriteEntry(message);
+            }
         }
     }
 }
